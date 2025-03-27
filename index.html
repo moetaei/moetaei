@@ -10,15 +10,17 @@
 </head>
 <body>
         
-    <nav class="nav">
-        <ul>
-            <li><a href="#intro">Intro</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    
+<nav class="nav">
+    <ul>
+        <li><a href="#intro" data-short="🏠"><span>Intro</span></a></li>
+        <li><a href="#about" data-short="👤"><span>About Me</span></a></li>
+        <li><a href="#skills" data-short="🛠️"><span>Skills</span></a></li>
+        <li><a href="#portfolio" data-short="🎬"><span>Portfolio</span></a></li>
+        <li><a href="#contact" data-short="✉️"><span>Contact</span></a></li>
+    </ul>
+</nav>
+
 
     <main class="container">
         <section class="section" id="intro">
@@ -113,5 +115,57 @@
             event.preventDefault();
         }, { passive: false });
     </script>
+
+<canvas id="particles"></canvas>
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particlesArray = [];
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() * 0.5) - 0.25;
+        this.speedY = (Math.random() * 0.5) - 0.25;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+        if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+    }
+    draw() {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+}
+function init() {
+    particlesArray = [];
+    const numberOfParticles = (canvas.width * canvas.height) / 9000;
+    for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
+}
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+    requestAnimationFrame(animate);
+}
+init();
+animate();
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    init();
+});
+</script>
+
 </body>
 </html>

@@ -119,3 +119,80 @@ iframe {
 .section::before {
     backdrop-filter: blur(8px);
 }
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes glow {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+    50% { transform: translateY(-20px) scale(1.2); opacity: 0.6; }
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
+    top: 20%;
+    left: 10%;
+    border-radius: 50%;
+    animation: glow 6s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        transform: none;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+    }
+    .nav ul {
+        display: flex;
+        gap: 10px;
+    }
+    .nav ul li a {
+        padding: 3px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        transform: none;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        border-radius: 0;
+    }
+    .nav ul {
+        display: flex;
+        gap: 10px;
+    }
+    .nav ul li a {
+        padding: 5px 8px;
+        font-size: 0.7rem;
+    }
+    .nav ul li a::before {
+        content: attr(data-short);
+    }
+    .nav ul li a span {
+        display: none;
+    }
+}

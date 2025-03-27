@@ -1,0 +1,121 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+.section {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+}
+
+.content-box {
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 80%;
+}
+
+.about-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-text, .about-resume {
+    flex: 1;
+}
+
+.about-resume iframe {
+    width: 100%;
+    height: 60vh;
+    border: none;
+}
+
+.nav {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 10px;
+    border-radius: 12px;
+    z-index: 1000;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    display: block;
+}
+
+#intro { background-image: url('0.jpg'); }
+#about { background-image: url('1.jpeg'); }
+#skills { background-image: url('2.jpg'); }
+#portfolio { background-image: url('https://images.unsplash.com/photo-1544198365-f5d60b6d8190'); }
+#contact { background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475'); }
+
+.section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.5);
+}
+
+.section .content-box {
+    position: relative;
+    z-index: 1;
+}
+
+.portfolio-gallery img {
+    width: 250px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.skills-columns {
+    columns: 3;
+    column-gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.portfolio-gallery {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+iframe {
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.section::before {
+    backdrop-filter: blur(8px);
+}

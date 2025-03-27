@@ -1,107 +1,115 @@
-<!DOCTYPE HTML>
-<!--
-	Solid State by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Mo Taei's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mo Taei's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        
+    <nav class="nav">
+        <ul>
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">Mo Taei's Portfolio</a></h1>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+    <main class="container">
+        <section class="section" id="intro">
+            <div class="content-box">
+                <h1>Mo Taei</h1>
+            </div>
+        </section>
 
-				<!-- Menu -->
-					<nav id="menu">
-						<div class="inner">
-							<h2>Menu</h2>
-							<ul class="links">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="https://github.com/moetaei/moetaei/raw/main/Mo-Taei-Resume.pdf">Resume</a></li>
-								<li><a href="https://www.linkedin.com/in/mtaei/">LinkedIn</a></li>
-							</ul>
-							<a href="#" class="close">Close</a>
-						</div>
-					</nav>
+        <section class="section" id="about">
+            <div class="content-box about-container">
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>Highly skilled System Administrator at DreamWorks Animation with expertise in scripting, cloud infrastructure, and software troubleshooting across diverse environments.</p>
+                </div>
+                <div class="about-resume">
+                    <iframe src="https://drive.google.com/file/d/1kXZ4fRPHzwVYPoiwU6MdOH0JkMkgQlUK/preview"></iframe>
+                </div>
+            </div>
+        </section>
 
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>Mo Taei Portfolio</h2>
-							<p><a href="https://github.com/moetaei/moetaei/raw/main/Mo-Taei-Resume.pdf">Click here to see my resume</a></p>
-						</div>
-					</section>
+        <section class="section" id="skills">
+            <div class="content-box">
+                <h2>Skills</h2>
+                
+    <ul class="skills-columns">
+        <li>Unreal Engine Development</li>
+        <li>Python, PowerShell, Bash, C++</li>
+        <li>Cloud Solutions (AWS & Azure)</li>
+        <li>System Administration (Linux, Windows, macOS)</li>
+        <li>Adobe Photoshop & Premiere Pro</li>
+        <li>Web Development (HTML, CSS, JS)</li>
+    
+                    <li>Unreal Engine</li>
+                    <li>Python, PowerShell, Bash, C++</li>
+                    <li>Cloud Solutions (AWS & Azure)</li>
+                    <li>System Administration (Linux, Windows, macOS)</li>
+                </ul>
+            </div>
+        </section>
 
-				<!-- Wrapper -->
-					<section id="wrapper">
+        <section class="section" id="portfolio">
+            <div class="content-box">
+                <h2>Portfolio</h2>
+                
+    <div class="portfolio-gallery">
+        <iframe width="700" height="400" src="https://www.youtube.com/embed/Mz3if2iNJPg?si=a_0lkUgslSC1m2i3" frameborder="0" allowfullscreen></iframe>
 
-						<!-- One -->
-							<section id="one" class="wrapper spotlight style1">
-								<div class="inner">
-									<a href="#" class="image"><img src="images/pic01.gif" alt="" /></a>
-									<div class="content">
-										<h2 class="major">About Me</h2>
-										<p>Highly skilled System Administrator with over six years of experience supporting Linux, macOS, and Windows environments. Currently part of the DreamWorks Animation System Administration team, leading infrastructure projects and system upgrades. Skilled in scripting (Python, PowerShell, Bash), managing complex deployments, and troubleshooting hardware and software issues across diverse environments. Strong communicator, able to collaborate across teams to improve operational efficiency</p>
-										<a href="https://www.linkedin.com/in/mtaei/" class="special">Visit my LinkedIn</a>
-									</div>
-								</div>
-							</section>
+                </div>
+            </div>
+        </section>
 
+        <section class="section" id="contact">
+            
+    <div class="content-box">
+        <h2>Contact</h2>
+        <iframe src="https://maps.google.com/maps?q=Los%20Angeles&t=&z=13&ie=UTF8&iwloc=&output=embed" width="80%" height="300" frameborder="0"></iframe>
+    
+                <p>Email: mtaei@icloud.com</p>
+                <p>Phone: +1 (949) 547-7659</p>
+                <a href="http://linkedin.com/in/mtaei">LinkedIn Profile</a>
+            </div>
+        </section>
+    </main>
 
-						<!-- Three -->
-							<section id="three" class="wrapper spotlight style3">
-								<div class="inner">
-									<div class="content">
-										<h2 class="major">Resume</h2>
-										<iframe src="https://nbviewer.org/github/moetaei/moetaei/blob/main/Mo-Taei-Resume.pdf" width="100%" height="800"></iframe>
-									</div>
-								</div>
-							</section>
+    <script>
+        const sections = document.querySelectorAll('.section');
+        const links = document.querySelectorAll('.nav ul li a');
 
+        links.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
 
-					</section>
-							
-
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<h2 class="major">Contact</h2>
-							<ul class="contact">
-								<li class="icon solid fa-home">
-									Los Angeles, CA<br />
-								</li>
-								<li class="icon solid fa-phone">(949) 547-7659</li>
-								<li class="icon solid fa-envelope"><a href="#">info@motaei.com</a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Mo Taei<br /> All rights reserved.</li>
-							</ul>
-						</div>
-					</section>
-
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+        let isScrolling = false;
+        window.addEventListener('wheel', (event) => {
+            if (!isScrolling) {
+                const currentSection = [...sections].reduce((closest, section) => {
+                    const offset = section.getBoundingClientRect().top;
+                    return Math.abs(offset) < Math.abs(closest.getBoundingClientRect().top) ? section : closest;
+                });
+                const currentIndex = [...sections].indexOf(currentSection);
+                const delta = Math.sign(event.deltaY);
+                const nextIndex = Math.min(Math.max(currentIndex + delta, 0), sections.length - 1);
+                isScrolling = true;
+                sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => isScrolling = false, 1000);
+            }
+            event.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
 </html>

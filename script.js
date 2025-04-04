@@ -126,8 +126,8 @@ let buildingCount = 12;
 let buildings = [];
 
 for (let i = 0; i < buildingCount; i++) {
-  let w = 600;
-  let h = 800 + Math.random() * 100;
+  let w = 200;
+  let h = 400 + (Math.random() * 1000)/2;
   let x = i * (w + 10); // consistent rooftop spacing
 
   // Create an array of windows for this building

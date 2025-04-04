@@ -282,53 +282,94 @@ function getRightmostBuildingX() {
   animate();
 });
 
-// EASTER EGG => star tunnel => slower
+// EASTER EGG => star tunnel => faster with button holds
 const tunnelCanvas = document.getElementById('tunnelCanvas');
-if(tunnelCanvas){
+if (tunnelCanvas) {
   const ctx = tunnelCanvas.getContext('2d');
-  let w,h,speed=1.5; // slower
-  function resize(){
+  let w, h, speed = 1.5; // starting speed
+  function resize() {
     w = tunnelCanvas.width = tunnelCanvas.offsetWidth;
     h = tunnelCanvas.height = tunnelCanvas.offsetHeight;
   }
   resize();
   window.addEventListener('resize', resize);
 
-  let dots=[];
-  for(let i=0;i<4000;i++){
+  let dots = [];
+  for (let i = 0; i < 4000; i++) {
     dots.push({
-      x:(Math.random()-0.5)*w,
-      y:(Math.random()-0.5)*h,
-      z:Math.random()*w
+      x: (Math.random() - 0.5) * w,
+      y: (Math.random() - 0.5) * h,
+      z: Math.random() * w
     });
   }
-  function tunnelDraw(){
-    ctx.fillStyle='rgba(0,0,0,0.15)';
-    ctx.fillRect(0,0,w,h);
-    dots.forEach(dot=>{
+
+  // Flags to track button holding
+  let increaseSpeed = false;
+  let decreaseSpeed = false;
+
+  tunnelCanvas.addEventListener('mousedown', (e) => {
+    // Left button (button 0) speeds up (max out fast)
+    if (e.button === 0) {
+      increaseSpeed = true;
+    }
+    // Right button (button 2) slows down (max out slow)
+    else if (e.button === 2) {
+      decreaseSpeed = true;
+    }
+  });
+  tunnelCanvas.addEventListener('mouseup', (e) => {
+    if (e.button === 0) {
+      increaseSpeed = false;
+      // Optionally reset speed when released:
+      // speed = 1.5;
+    } else if (e.button === 2) {
+      decreaseSpeed = false;
+      // Optionally reset speed when released:
+      // speed = 1.5;
+    }
+  });
+  tunnelCanvas.addEventListener('mouseleave', () => {
+    increaseSpeed = false;
+    decreaseSpeed = false;
+  });
+  // Prevent right-click context menu so the right button works as intended.
+  tunnelCanvas.addEventListener('contextmenu', e => {
+    e.preventDefault();
+  });
+
+  function tunnelDraw() {
+    // Use a high acceleration so the tunnel quickly maxes out:
+    const acceleration = 0.1; // change per frame when button held
+    const maxSpeed = 100;       // maximum speed when accelerating
+    const minSpeed = 0.5;      // minimum speed
+
+    if (increaseSpeed) {
+      speed += acceleration;
+      if (speed > maxSpeed) speed = maxSpeed;
+    }
+    if (decreaseSpeed) {
+      speed -= acceleration;
+      if (speed < minSpeed) speed = minSpeed;
+    }
+
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+    ctx.fillRect(0, 0, w, h);
+    dots.forEach(dot => {
       dot.z -= speed;
-      if(dot.z<1){
+      if (dot.z < 1) {
         dot.z = w;
-        dot.x = (Math.random()-0.5)*w;
-        dot.y = (Math.random()-0.5)*h;
+        dot.x = (Math.random() - 0.5) * w;
+        dot.y = (Math.random() - 0.5) * h;
       }
-      let px=(dot.x/dot.z)*8000 + w/2;
-      let py=(dot.y/dot.z)*8000 + h/2;
-      let size=(1 - dot.z/w)*20;
+      let px = (dot.x / dot.z) * 8000 + w / 2;
+      let py = (dot.y / dot.z) * 8000 + h / 2;
+      let size = (1 - dot.z / w) * 20;
       ctx.beginPath();
-      ctx.arc(px, py, size, 0, Math.PI*2);
-      ctx.fillStyle='#f0f';
+      ctx.arc(px, py, size, 0, Math.PI * 2);
+      ctx.fillStyle = '#f0f';
       ctx.fill();
     });
     requestAnimationFrame(tunnelDraw);
   }
   tunnelDraw();
-
-  tunnelCanvas.addEventListener('click', ()=>{
-    speed++;
-  });
-  tunnelCanvas.addEventListener('contextmenu', e=>{
-    e.preventDefault();
-    speed=Math.max(0.5, speed-1);
-  });
 }

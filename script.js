@@ -282,11 +282,17 @@ function getRightmostBuildingX() {
   animate();
 });
 
-// EASTER EGG => star tunnel => faster with button holds
+// EASTER EGG => star tunnel => speed controlled by holding mouse buttons with acceleration
 const tunnelCanvas = document.getElementById('tunnelCanvas');
 if (tunnelCanvas) {
   const ctx = tunnelCanvas.getContext('2d');
-  let w, h, speed = 1.5; // starting speed
+  let w, h;
+  let speed = 1.5;              // starting speed
+  const maxSpeed = 80;          // maximum speed
+  const minSpeed = 0.5;         // minimum speed
+  const acceleration = 0.05;     // how much to change speed per frame when holding
+  let frameCount = 0;           // for RGB cycling
+
   function resize() {
     w = tunnelCanvas.width = tunnelCanvas.offsetWidth;
     h = tunnelCanvas.height = tunnelCanvas.offsetHeight;
@@ -303,46 +309,37 @@ if (tunnelCanvas) {
     });
   }
 
-  // Flags to track button holding
+  // Flags for mouse button holds
   let increaseSpeed = false;
   let decreaseSpeed = false;
 
+  // Use mousedown to set flags
   tunnelCanvas.addEventListener('mousedown', (e) => {
-    // Left button (button 0) speeds up (max out fast)
-    if (e.button === 0) {
+    if (e.button === 0) {      // Left button for speeding up
       increaseSpeed = true;
-    }
-    // Right button (button 2) slows down (max out slow)
-    else if (e.button === 2) {
+    } else if (e.button === 2) { // Right button for slowing down
       decreaseSpeed = true;
     }
   });
+  // Clear flags on mouseup and mouseleave
   tunnelCanvas.addEventListener('mouseup', (e) => {
     if (e.button === 0) {
       increaseSpeed = false;
-      // Optionally reset speed when released:
-      // speed = 1.5;
     } else if (e.button === 2) {
       decreaseSpeed = false;
-      // Optionally reset speed when released:
-      // speed = 1.5;
     }
   });
   tunnelCanvas.addEventListener('mouseleave', () => {
     increaseSpeed = false;
     decreaseSpeed = false;
   });
-  // Prevent right-click context menu so the right button works as intended.
-  tunnelCanvas.addEventListener('contextmenu', e => {
+  // Prevent the context menu on right-click
+  tunnelCanvas.addEventListener('contextmenu', (e) => {
     e.preventDefault();
   });
 
   function tunnelDraw() {
-    // Use a high acceleration so the tunnel quickly maxes out:
-    const acceleration = 0.1; // change per frame when button held
-    const maxSpeed = 100;       // maximum speed when accelerating
-    const minSpeed = 0.5;      // minimum speed
-
+    // Adjust speed gradually while holding a button
     if (increaseSpeed) {
       speed += acceleration;
       if (speed > maxSpeed) speed = maxSpeed;
@@ -354,6 +351,7 @@ if (tunnelCanvas) {
 
     ctx.fillStyle = 'rgba(0,0,0,0.15)';
     ctx.fillRect(0, 0, w, h);
+
     dots.forEach(dot => {
       dot.z -= speed;
       if (dot.z < 1) {
@@ -366,9 +364,18 @@ if (tunnelCanvas) {
       let size = (1 - dot.z / w) * 20;
       ctx.beginPath();
       ctx.arc(px, py, size, 0, Math.PI * 2);
-      ctx.fillStyle = '#f0f';
+      
+      // When at or above max speed, cycle through RGB; otherwise, use the default color.
+      if (speed >= maxSpeed) {
+        let hue = frameCount % 360;
+        ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+      } else {
+        ctx.fillStyle = '#f0f';
+      }
       ctx.fill();
     });
+
+    frameCount++;
     requestAnimationFrame(tunnelDraw);
   }
   tunnelDraw();

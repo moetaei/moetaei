@@ -1,209 +1,200 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.container {
-    height: 100vh;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-}
-
-.section {
-    height: 100vh;
-    scroll-snap-align: start;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    background-size: cover;
-}
-
-.content-box {
-    backdrop-filter: blur(10px);
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    width: 80%;
-}
-
-.about-container {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-}
-
-.about-text, .about-resume {
-    flex: 1;
-}
-
-.about-resume iframe {
-    width: 100%;
-    height: 60vh;
-    border: none;
-}
-
+/* NAV */
 .nav {
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.6);
-    padding: 10px;
-    border-radius: 12px;
-    z-index: 1000;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
 }
-
 .nav ul {
-    list-style: none;
-    padding: 0;
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-.nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    display: block;
+/* SCROLL container */
+.container {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 }
 
-#intro { background-image: url('0.jpg'); }
-#about { background-image: url('1.jpeg'); }
-#skills { background-image: url('2.jpg'); }
-#portfolio { background-image: url('https://images.unsplash.com/photo-1544198365-f5d60b6d8190'); }
-#contact { background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475'); }
-
-.section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(5px);
-    background: rgba(0,0,0,0.5);
+/* SECTIONS */
+.section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.section .content-box {
-    position: relative;
-    z-index: 1;
+/* Remove text-align center from the global .section */
+.section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center;  <-- remove this line here */
 }
 
-.portfolio-gallery img {
-    width: 250px;
-    margin: 10px;
-    border-radius: 8px;
+/* Add text-align: center only to certain sections you still want centered */
+#intro.section,
+#about.section,
+#skills.section,
+#contact.section,
+#easteregg.section {
+  text-align: center;
 }
 
+/* The portfolio section is left as-is with no text-align rule,
+   so it will not forcibly center your headings or content. */
+
+/* Intro heading => pink, half strong, no flicker => we'll do a slow 10s cycle that’s minimal */
+.nofill-neon {
+  font-family: 'Aldrich', sans-serif;
+  font-size: 4rem;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 102, 204, 0.5); /* half-strong pink */
+  animation: neonSlow 10s infinite;
+}
+
+@keyframes neonSlow {
+  0%, 100% {
+    opacity: 1;
+    -webkit-text-stroke: 1.5px rgba(255, 102, 204, 0.5);
+    text-shadow: 0 0 5px rgba(255,102,204,0.5);
+  }
+  50% {
+    opacity: 0.8;
+    -webkit-text-stroke: 1px rgba(255, 102, 204, 0.3);
+    text-shadow: none;
+  }
+}
+
+/* BG canvas => fill section */
+.bgCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* content box */
+.content-box {
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  width: 80%;
+  max-width: 1000px;
+}
+
+/* about container center */
+.about-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.about-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* skills => columns */
 .skills-columns {
-    columns: 3;
-    column-gap: 20px;
-    list-style: none;
-    padding: 0;
+  columns: 2;
+  column-gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
 }
 
+/* portfolio => video gallery */
 .portfolio-gallery {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-
-iframe {
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.section::before {
-    backdrop-filter: blur(8px);
-}
-
-
-
-@keyframes glow {
-    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
-    50% { transform: translateY(-20px) scale(1.2); opacity: 0.6; }
-}
-
-.section::after {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
-    top: 20%;
-    left: 10%;
-    border-radius: 50%;
-    animation: glow 6s ease-in-out infinite alternate;
-    pointer-events: none;
-}
-
-@media (max-width: 768px) {
-    .nav {
-        top: auto;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        transform: none;
-        padding: 5px;
-        display: flex;
-        justify-content: center;
-    }
-    .nav ul {
-        display: flex;
-        gap: 10px;
-    }
-    .nav ul li a {
-        padding: 3px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav {
-        top: auto;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        transform: none;
-        padding: 5px;
-        display: flex;
-        justify-content: center;
-        border-radius: 0;
-    }
-    .nav ul {
-        display: flex;
-        gap: 10px;
-    }
-    .nav ul li a {
-        padding: 5px 8px;
-        font-size: 0.7rem;
-    }
-    .nav ul li a::before {
-        content: attr(data-short);
-    }
-    .nav ul li a span {
-        display: none;
-    }
-}
-
 .videoWrapper {
-  display: block;
-  margin: 0 auto;
   width: 320px;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/9;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  text-align: left; /* So text-align: center doesn't cascade in */
 }
-
 .videoWrapper iframe {
   position: absolute;
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* Easter Egg => fill entire screen */
+#easteregg {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  position: relative;
+}
+#tunnelCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* MQ => responsive */
+@media (max-width: 768px) {
+  .nav a {
+    font-size: 0.8rem;
+  }
+  .about-container {
+    flex-direction: column;
+  }
+  .skills-columns {
+    columns: 1;
+  }
+  .videoWrapper {
+    width: 100%;
+    max-width: 320px;
+  }
 }

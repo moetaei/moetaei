@@ -301,7 +301,7 @@ if (tunnelCanvas) {
   window.addEventListener('resize', resize);
 
   let dots = [];
-  for (let i = 0; i < 4000; i++) {
+  for (let i = 0; i < 8000; i++) {
     dots.push({
       x: (Math.random() - 0.5) * w,
       y: (Math.random() - 0.5) * h,

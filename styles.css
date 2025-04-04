@@ -84,6 +84,8 @@ html, body {
   animation: neonSlow 10s infinite;
 }
 
+
+
 @keyframes neonSlow {
   0%, 100% {
     opacity: 1;

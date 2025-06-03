@@ -290,7 +290,7 @@ if (tunnelCanvas) {
   let speed = 1.5;              // starting speed
   const maxSpeed = 80;          // maximum speed
   const minSpeed = 0.5;         // minimum speed
-  const acceleration = 0.05;     // how much to change speed per frame when holding
+  const acceleration = 0.5;     // how much to change speed per frame when holding
   let frameCount = 0;           // for RGB cycling
 
   function resize() {

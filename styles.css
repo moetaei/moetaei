@@ -200,3 +200,128 @@ html, body {
     max-width: 320px;
   }
 }
+
+
+/* Portfolio skyline: contained to the viewport */
+#portfolio {
+  overflow: hidden;
+}
+#portfolio .content-box {
+  max-width: 1100px;
+}
+
+/* Centered interactive tunnel directions */
+#easteregg {
+  overflow: hidden;
+}
+.egg-instructions {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(720px, 82vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 7vw, 80px);
+  padding: 26px 34px;
+  border: 1px solid rgba(255, 0, 255, 0.65);
+  background: rgba(4, 0, 12, 0.62);
+  backdrop-filter: blur(7px);
+  box-shadow:
+    0 0 18px rgba(255, 0, 255, 0.18),
+    inset 0 0 24px rgba(255, 0, 255, 0.06);
+  clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 20px, 100% calc(100% - 20px),
+                     calc(100% - 20px) 100%, 20px 100%, 0 calc(100% - 20px), 0 20px);
+}
+.egg-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-width: 230px;
+  text-align: left;
+}
+.egg-control > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.egg-control strong {
+  color: #ff35e7;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-shadow: 0 0 10px rgba(255, 0, 255, .65);
+}
+.egg-control span:not(.egg-mouse) {
+  color: rgba(255,255,255,.7);
+  font-family: 'Aldrich', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: .12em;
+}
+.egg-mouse {
+  width: 42px;
+  height: 58px;
+  border: 1px solid #ff35e7;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(255,0,255,.35);
+}
+.egg-divider {
+  width: 1px;
+  height: 54px;
+  background: linear-gradient(transparent, #ff35e7, transparent);
+  box-shadow: 0 0 8px rgba(255,0,255,.45);
+}
+
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+  }
+  .about-text,
+  .about-resume {
+    flex: 1 1 auto !important;
+    width: 100%;
+  }
+  .about-resume iframe {
+    height: 60vh !important;
+    min-height: 420px !important;
+  }
+  .egg-instructions {
+    width: min(680px, 90vw);
+    gap: 20px;
+  }
+  .egg-control {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .egg-instructions {
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px;
+  }
+  .egg-divider {
+    width: 70%;
+    height: 1px;
+  }
+}
+
+
+/* Restore the original city silhouette: no neon rooftop ornaments. */
+#portfolio .bgCanvas {
+  display: block;
+}
+
+/* Keep the interaction directions centered as a single balanced HUD. */
+#easteregg .egg-instructions {
+  left: 50%;
+  right: auto;
+  margin: 0;
+}

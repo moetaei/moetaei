@@ -35,20 +35,21 @@
     <!-- ABOUT: waves from mid-screen down -->
     <section class="section" id="about">
       <canvas class="bgCanvas" data-bgtype="quarterNeonWaves"></canvas>
-      <div class="content-box about-container about-centered" style="width:70%; height:80vh;">
-        <div class="about-text" style="flex:0 0 40%;">
+      <div class="content-box about-container about-centered" style="width:86%; max-width:1450px; min-height:80vh;">
+        <div class="about-text" style="flex:0 0 30%;">
           <h2>About Me</h2>
           <p>
-            System Administrator with nearly a decade of IT experience, including the past five
-            years supporting creative teams and production environments at DreamWorks
-            Animation. Skilled in managing Windows, macOS, and Linux systems, scripting with
-            Python and PowerShell, and troubleshooting complex issues quickly.
+            Technology operations professional with nearly a decade of IT and technical support
+            experience, including 5 years supporting production at DreamWorks Animation and current
+            experience in the game industry with Take-Two Interactive (2K Games &amp; Zynga).
+            Experienced with Windows, macOS, Linux, studio infrastructure and migrations, endpoint
+            management, automation, incident response, and production tools.
           </p>
         </div>
-        <div class="about-resume" style="flex:0 0 60%; height:100%;">
+        <div class="about-resume" style="flex:0 0 70%; height:100%;">
           <iframe
             src="https://drive.google.com/file/d/1kXZ4fRPHzwVYPoiwU6MdOH0JkMkgQlUK/preview"
-            style="border:none;width:100%;height:100%;"
+            style="border:none;width:100%;height:76vh;min-height:620px;"
           ></iframe>
         </div>
       </div>
@@ -116,6 +117,23 @@
     <!-- EASTER EGG: star tunnel unchanged, 4000 stars, factor=8000, size=20 -->
     <section class="section" id="easteregg">
       <canvas id="tunnelCanvas"></canvas>
+      <div class="egg-instructions" aria-label="Interactive controls">
+        <div class="egg-control">
+          <span class="egg-mouse">L</span>
+          <div>
+            <strong>LEFT CLICK</strong>
+            <span>HOLD TO ACCELERATE</span>
+          </div>
+        </div>
+        <div class="egg-divider"></div>
+        <div class="egg-control">
+          <span class="egg-mouse">R</span>
+          <div>
+            <strong>RIGHT CLICK</strong>
+            <span>HOLD TO SLOW DOWN</span>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 

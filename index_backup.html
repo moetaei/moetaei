@@ -77,26 +77,22 @@
     </section>
 
     <section class="section portfolio-section" id="portfolio">
-      <div class="work-exhibit">
+      <div class="work-glow work-glow-a" aria-hidden="true"></div>
+      <div class="work-glow work-glow-b" aria-hidden="true"></div>
+      <div class="portfolio-wrap work-exhibit">
         <div class="work-title reveal"><h2>Work</h2></div>
-        <div class="screening-room reveal">
-          <article class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-media"><iframe title="Environment Unreal project" src="https://www.youtube.com/embed/5TjLQM7S_hY" allowfullscreen></iframe></div>
-            </div>
-            <div class="screen-caption"><strong>Environment / Unreal</strong><span>01</span></div>
+        <div class="work-rail reveal">
+          <article class="work-piece work-piece-main">
+            <div class="work-media"><iframe title="Environment Unreal project" src="https://www.youtube.com/embed/5TjLQM7S_hY" allowfullscreen></iframe></div>
+            <div class="work-copy"><h3>Environment</h3></div>
           </article>
-          <article class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-media"><iframe title="Creative pipeline project" src="https://www.youtube.com/embed/Mz3if2iNJPg" allowfullscreen></iframe></div>
-            </div>
-            <div class="screen-caption"><strong>Creative Pipeline</strong><span>02</span></div>
+          <article class="work-piece">
+            <div class="work-media"><iframe title="Creative pipeline project" src="https://www.youtube.com/embed/Mz3if2iNJPg" allowfullscreen></iframe></div>
+            <div class="work-copy"><h3>Creative Pipeline</h3></div>
           </article>
-          <article class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-media"><iframe title="Technical experiment project" src="https://www.youtube.com/embed/zhL6NqpCXuE" allowfullscreen></iframe></div>
-            </div>
-            <div class="screen-caption"><strong>Technical Experiment</strong><span>03</span></div>
+          <article class="work-piece">
+            <div class="work-media"><iframe title="Technical experiment project" src="https://www.youtube.com/embed/zhL6NqpCXuE" allowfullscreen></iframe></div>
+            <div class="work-copy"><h3>Technical Experiment</h3></div>
           </article>
         </div>
       </div>
@@ -109,7 +105,7 @@
         <div class="contact-card glass-card reveal">
           <div class="contact-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
           <h2>Contact</h2>
-          <p class="contact-lede">Southern California · systems, production technology</p>
+          <p class="contact-lede">Southern California · systems, production technology, and creative tooling.</p>
           <div class="contact-links">
             <a href="mailto:mtaei@icloud.com"><span>EMAIL</span><strong>mtaei@icloud.com</strong>↗</a>
             <a href="tel:+19495477659"><span>PHONE</span><strong>+1 (949) 547-7659</strong>↗</a>
@@ -126,10 +122,14 @@
 
     <section class="section easter-section" id="easteregg" aria-label="Easter egg">
       <canvas id="tunnelCanvas"></canvas>
-      <div class="egg-banner" role="group" aria-label="Tunnel speed controls">
-        <button type="button" data-tunnel-control="slow" aria-label="Make the tunnel slower">← SLOWER</button>
-        <span aria-hidden="true">SPEED</span>
-        <button type="button" data-tunnel-control="fast" aria-label="Make the tunnel faster">FASTER →</button>
+      <div class="egg-panel">
+        <div class="egg-kicker">BONUS / HIDDEN</div>
+        <div class="egg-signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <p>LEFT / RIGHT TO CHANGE SPEED</p>
+        <div class="egg-touch" aria-hidden="true">
+          <button type="button" data-tunnel-control="slow" aria-label="Slow down">−</button>
+          <button type="button" data-tunnel-control="fast" aria-label="Speed up">+</button>
+        </div>
       </div>
     </section>
   </main>

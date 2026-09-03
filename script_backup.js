@@ -1011,106 +1011,118 @@ function drawSynthCity() {
   animate();
 });
 
-// Hidden star tunnel: dense gold field, smooth motion, simple left/right controls.
+// EASTER EGG => dense gold star tunnel with sparse magenta accents and hidden geometry.
 const tunnelCanvas = document.getElementById('tunnelCanvas');
 if (tunnelCanvas) {
   const ctx = tunnelCanvas.getContext('2d');
-  let w = 0, h = 0;
-  let speed = 18;
-  let targetSpeed = 18;
-  let lastTime = performance.now();
-  const dots = [];
-  const COUNT = 3600;
+  let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let speed = 1.15;
+  const maxSpeed = 68;
+  const minSpeed = 0.25;
+  const acceleration = 0.32;
+  let increaseSpeed = false;
+  let decreaseSpeed = false;
+  let frameCount = 0;
 
-  function resizeTunnel() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = tunnelCanvas.clientWidth;
     h = tunnelCanvas.clientHeight;
     tunnelCanvas.width = Math.floor(w * dpr);
     tunnelCanvas.height = Math.floor(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  window.addEventListener('resize', resizeTunnel, { passive: true });
-  resizeTunnel();
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
 
-  function seed(dot, far = false) {
-    dot.x = (Math.random() - 0.5) * w * 1.15;
-    dot.y = (Math.random() - 0.5) * h * 1.15;
-    dot.z = far ? w * (0.75 + Math.random() * 0.5) : Math.random() * w;
-    dot.size = 0.25 + Math.random() * 1.6;
-    dot.phase = Math.random() * Math.PI * 2;
-    dot.twinkle = 0.35 + Math.random() * 0.65;
+  const dots = Array.from({length: 5200}, () => ({
+    x:(Math.random()-.5)*w,
+    y:(Math.random()-.5)*h,
+    z:Math.random()*w,
+    r:.7+Math.random()*3.1,
+    warm:Math.random()>.90,
+    twinkle:Math.random()*Math.PI*2,
+    glyph:Math.random()>.986
+  }));
+
+  let increase = false, decrease = false;
+  const bind = (el, setter) => {
+    if(!el) return;
+    const on=e=>{e.preventDefault();setter(true)};
+    const off=e=>{e.preventDefault();setter(false)};
+    el.addEventListener('pointerdown', on);
+    ['pointerup','pointercancel','pointerleave'].forEach(ev=>el.addEventListener(ev,off));
+  };
+  bind(document.querySelector('[data-tunnel-control="slow"]'), v=>decrease=v);
+  bind(document.querySelector('[data-tunnel-control="fast"]'), v=>increase=v);
+
+  tunnelCanvas.addEventListener('pointerdown', e=>{if(e.button===0)increase=true;if(e.button===2)decrease=true});
+  tunnelCanvas.addEventListener('pointerup', e=>{if(e.button===0)increase=false;if(e.button===2)decrease=false});
+  tunnelCanvas.addEventListener('pointerleave', ()=>{increase=false;decrease=false});
+  tunnelCanvas.addEventListener('contextmenu', e=>e.preventDefault());
+
+  function seed(dot){
+    dot.z=w*(.82+Math.random()*.2);
+    dot.x=(Math.random()-.5)*w;
+    dot.y=(Math.random()-.5)*h;
+    dot.r=.7+Math.random()*3.1;
+    dot.warm=Math.random()>.82;
+    dot.glyph=Math.random()>.986;
   }
 
-  for (let i = 0; i < COUNT; i++) {
-    const dot = {};
-    seed(dot);
-    dots.push(dot);
-  }
+  function drawStarfield(){
+    ctx.fillStyle='rgba(0,0,0,.22)';
+    ctx.fillRect(0,0,w,h);
+    const cx=w/2, cy=h/2;
+    const vignette=ctx.createRadialGradient(cx,cy,10,cx,cy,Math.max(w,h)*.72);
+    vignette.addColorStop(0,'rgba(12,3,18,0.04)');
+    vignette.addColorStop(.55,'rgba(2,1,6,0.08)');
+    vignette.addColorStop(1,'rgba(0,0,0,.42)');
+    ctx.fillStyle=vignette;ctx.fillRect(0,0,w,h);
 
-  function setTarget(delta) {
-    targetSpeed = Math.max(5, Math.min(48, targetSpeed + delta));
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); setTarget(-7); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); setTarget(7); }
-  }, { passive: false });
-
-  document.querySelectorAll('[data-tunnel-control]').forEach(btn => {
-    const direction = btn.dataset.tunnelControl === 'slow' ? -7 : 7;
-    const activate = () => setTarget(direction);
-    btn.addEventListener('click', activate);
-    btn.addEventListener('pointerdown', () => {
-      activate();
-      btn.__tunnelTimer = window.setInterval(activate, 140);
-    });
-    const release = () => {
-      if (btn.__tunnelTimer) {
-        window.clearInterval(btn.__tunnelTimer);
-        btn.__tunnelTimer = null;
+    dots.forEach(dot=>{
+      dot.z -= speed;
+      if(dot.z<1) seed(dot);
+      const scale=8000/dot.z;
+      const px=dot.x*scale+cx;
+      const py=dot.y*scale+cy;
+      if(px<-10||px>w+10||py<-10||py>h+10) return;
+      const size=Math.max(.45,dot.r*scale*.11*(1-dot.z/w)+dot.r*.12);
+      const alpha=Math.min(1, .18 + (1-dot.z/w)*.92);
+      const tw=.72+.28*Math.sin(frameCount*.045+dot.twinkle);
+      ctx.fillStyle=dot.warm ? `rgba(255,218,95,${alpha*tw})` : `rgba(255,115,230,${alpha*tw*.28})`;
+      ctx.beginPath();ctx.arc(px,py,size,0,Math.PI*2);ctx.fill();
+      if(size>1.6){
+        ctx.strokeStyle=dot.warm?'rgba(255,221,108,.26)':'rgba(255,100,232,.07)';
+        ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(px-size*3,py);ctx.lineTo(px+size*3,py);ctx.moveTo(px,py-size*3);ctx.lineTo(px,py+size*3);ctx.stroke();
       }
-    };
-    btn.addEventListener('pointerup', release);
-    btn.addEventListener('pointercancel', release);
-    btn.addEventListener('pointerleave', release);
-  });
+      if(dot.glyph && size>1.4){
+        ctx.save();ctx.translate(px,py);ctx.rotate(Math.PI/4);ctx.strokeStyle='rgba(255,221,108,.38)';ctx.lineWidth=.65;ctx.strokeRect(-size*2.2,-size*2.2,size*4.4,size*4.4);ctx.restore();
+      }
+    });
 
-  function drawTunnel(now) {
-    const dt = Math.min(32, Math.max(8, now - lastTime));
-    lastTime = now;
-    speed += (targetSpeed - speed) * Math.min(1, dt * 0.0045);
+    ctx.save();ctx.globalAlpha=.045;ctx.strokeStyle='#ffe36e';ctx.lineWidth=.55;
+    for(let i=0;i<28;i++){
+      const ang=(Math.PI*2*i/28)+(frameCount*.0006);
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(ang)*w,cy+Math.sin(ang)*w);ctx.stroke();
+    }
+    ctx.restore();
 
-    ctx.fillStyle = 'rgba(2,4,8,1)';
-    ctx.fillRect(0, 0, w, h);
-
-    const centerX = w * 0.5;
-    const centerY = h * 0.5;
-    const focal = Math.min(w, h) * 1.32;
-    const move = speed * (dt / 16.67);
-    const time = now * 0.001;
-
-    for (const dot of dots) {
-      dot.z -= move;
-      if (dot.z < 1) seed(dot, true);
-
-      const inv = focal / dot.z;
-      const px = dot.x * inv + centerX;
-      const py = dot.y * inv + centerY;
-      if (px < -30 || px > w + 30 || py < -30 || py > h + 30) continue;
-
-      const depth = 1 - dot.z / (w * 1.25);
-      const size = dot.size * (0.45 + depth * 2.7);
-      const twinkle = 0.72 + Math.sin(time * 1.8 + dot.phase) * 0.18 * dot.twinkle;
-      const alpha = Math.min(1, 0.12 + depth * 0.95) * twinkle;
-
-      ctx.beginPath();
-      ctx.arc(px, py, Math.max(0.35, size), 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(246,207,105,${alpha.toFixed(3)})`;
-      ctx.fill();
+    for(let i=0;i<5;i++){
+      const a=i*1.257+frameCount*.0016;
+      const rad=Math.min(w,h)*(.12+i*.075);
+      const x=cx+Math.cos(a)*rad, y=cy+Math.sin(a)*rad;
+      ctx.save();ctx.translate(x,y);ctx.rotate(a+.7);
+      ctx.strokeStyle='rgba(255,224,108,.22)';ctx.lineWidth=.7;
+      ctx.beginPath();ctx.moveTo(-9,0);ctx.lineTo(0,-9);ctx.lineTo(9,0);ctx.lineTo(0,9);ctx.closePath();ctx.stroke();
+      ctx.beginPath();ctx.arc(0,0,12,0,Math.PI*2);ctx.stroke();ctx.restore();
     }
 
-    requestAnimationFrame(drawTunnel);
+    if(increase) speed=Math.min(maxSpeed,speed+acceleration);
+    if(decrease) speed=Math.max(minSpeed,speed-acceleration);
+    frameCount++;
+    requestAnimationFrame(drawStarfield);
   }
-  requestAnimationFrame(drawTunnel);
+  drawStarfield();
 }
+

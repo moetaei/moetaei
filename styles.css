@@ -470,3 +470,45 @@ overflow:hidden}
   .egg-banner button{font-size:8px;letter-spacing:.11em;min-height:44px}
   .egg-banner span{font-size:6px;letter-spacing:.14em}
 }
+
+/* Final mobile scale refinement */
+@media (max-width: 620px){
+  .section{padding-top:72px;padding-bottom:60px}
+  .hero-card{padding:24px 20px}
+  .hero-card h1{font-size:clamp(2.5rem,13vw,3.8rem);margin:16px 0 14px}
+  .hero-card p{font-size:13px;line-height:1.48}
+  .hero-footer{font-size:8px;gap:8px 12px}
+
+  .about-card,.contact-card{padding:20px}
+  .about-card h2,.contact-card h2{font-size:clamp(2.7rem,12vw,3.8rem);margin:8px 0 16px}
+  .about-card p,.contact-card p{font-size:14px;line-height:1.52}
+  .resume-card{min-height:70vh}
+  .resume-card iframe{height:calc(70vh - 40px);min-height:440px}
+
+  .skills-top{margin-bottom:16px}
+  .skills-top h2{font-size:clamp(3rem,12vw,4.6rem)}
+  .skills-grid{gap:10px}
+  .skill-card{padding:16px 15px;gap:11px;border-radius:16px}
+  .skill-card h3{font-size:16px}
+  .skill-card p{font-size:11px;line-height:1.4}
+  .skill-card .skill-tags{gap:5px}
+  .skill-card .skill-tags span{font-size:8px;padding:5px 7px}
+
+  .work-exhibit{width:calc(100% - 28px);padding-top:0}
+  .work-title{margin-bottom:14px}
+  .work-title h2{font-size:3.5rem;letter-spacing:-.08em}
+  .screening-room{gap:14px}
+  .screen-frame{padding:4px;border-radius:11px}
+  .screen-caption{padding-top:8px}
+  .screen-caption strong{font-size:12px}
+  .screen-caption small{font-size:8px}
+
+  .contact-links a{grid-template-columns:60px 1fr auto;padding:10px 0}
+  .contact-links strong{font-size:11px}
+  .map-card{min-height:44vh}
+  .map-card iframe{height:44vh;min-height:290px}
+
+  .egg-banner{width:calc(100% - 20px)}
+  .egg-banner button{min-height:40px;font-size:8px;padding:9px 6px}
+  .egg-banner span{font-size:6px}
+}

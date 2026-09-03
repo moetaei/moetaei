@@ -397,3 +397,76 @@ overflow:hidden}
   .egg-banner button{font-size:9px;padding:10px 9px}
   .egg-banner span{font-size:7px}
 }
+
+/* V10: mobile layout repair. Long sections are allowed to grow instead of clipping their content. */
+@media (max-width: 900px){
+  html,body{overflow:hidden}
+  .container{height:100dvh;min-height:100dvh;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y proximity;-webkit-overflow-scrolling:touch}
+  .section{width:100%;height:auto;min-height:100dvh;overflow:hidden;align-items:flex-start;padding:88px 0 76px}
+  .hero-section{height:100dvh;min-height:100dvh;padding:0;align-items:center}
+  .hero-card{width:min(92vw,760px);padding:34px 28px;transform:none}
+  .hero-card h1{font-size:clamp(3.2rem,12vw,5.5rem);line-height:.9;margin:20px 0 18px}
+  .hero-card p{font-size:15px;line-height:1.5}
+  .hero-footer{margin-top:26px;gap:10px 16px;line-height:1.45}
+  .hero-footer span,.hero-footer a{max-width:100%}
+  .hero-footer span:nth-child(2){flex-basis:100%}
+  .about-section,.skills-section,.portfolio-section,.contact-section{justify-content:flex-start}
+  .about-grid,.contact-grid{width:min(92vw,760px);grid-template-columns:1fr;gap:16px}
+  .about-card,.contact-card{padding:26px}
+  .about-card h2,.contact-card h2{font-size:clamp(3.6rem,13vw,5.5rem);margin:10px 0 20px}
+  .about-card p,.contact-card p{font-size:15px;line-height:1.58}
+  .resume-card{min-height:72vh}
+  .resume-card iframe{height:calc(72vh - 48px);min-height:520px}
+  .skills-top{width:min(92vw,760px);margin-bottom:22px}
+  .skills-top h2{font-size:clamp(3.8rem,14vw,6rem);margin-top:0}
+  .skills-grid{width:min(92vw,760px);grid-template-columns:1fr;gap:12px}
+  .skill-card{min-height:0;padding:20px 18px;gap:14px}
+  .skill-card p{font-size:13px}
+  .portfolio-section{min-height:100dvh}
+  .work-exhibit{width:min(92vw,860px);padding-top:0}
+  .work-title{margin-bottom:18px;padding-bottom:16px}
+  .work-title h2{font-size:clamp(4rem,15vw,6.5rem)}
+  .screening-room{width:100%;grid-template-columns:1fr;gap:18px}
+  .screen-frame{padding:6px;border-radius:15px}
+  .screen-media{border-radius:8px}
+  .screen-caption{padding-top:8px}
+  .screen-caption strong{font-size:14px}
+  .contact-card,.map-card{width:100%}
+  .map-card{min-height:54vh}
+  .map-card iframe{height:54vh;min-height:360px}
+  .map-note{left:12px;bottom:12px;font-size:8px;max-width:calc(100% - 24px)}
+  .easter-section{height:100dvh;min-height:100dvh;padding:0;align-items:center;justify-content:center}
+  .egg-banner{bottom:max(14px,env(safe-area-inset-bottom));width:min(calc(100% - 24px),420px);justify-content:space-between;gap:2px;padding:5px 6px}
+  .egg-banner button{flex:1;min-height:42px;font-size:9px;padding:10px 7px}
+  .egg-banner span{padding:0 4px;font-size:7px;white-space:nowrap}
+  .nav{top:max(10px,env(safe-area-inset-top));left:10px;right:10px;height:44px}
+  .nav-pages{width:100%;gap:2px;padding:4px}
+  .nav-pages a{min-width:0;padding:8px 4px;font-size:10px;gap:0;justify-content:center}
+  .page-cue{display:none}
+}
+
+@media (max-width: 620px){
+  .nav-pages a{font-size:9px;padding:8px 2px}
+  .hero-card{width:calc(100% - 24px);padding:28px 22px;border-radius:20px}
+  .hero-card h1{font-size:clamp(3rem,15vw,4.4rem)}
+  .hero-card p{font-size:14px}
+  .hero-footer{font-size:9px;letter-spacing:.09em}
+  .about-card,.contact-card{padding:22px;border-radius:20px}
+  .about-card h2,.contact-card h2{font-size:clamp(3.2rem,15vw,4.6rem)}
+  .resume-card{min-height:76vh}
+  .resume-card iframe{height:calc(76vh - 48px);min-height:500px}
+  .skill-card h3{font-size:18px}
+  .skill-card p{font-size:12px}
+  .skill-tags{flex-wrap:wrap}
+  .work-exhibit{width:calc(100% - 24px)}
+  .work-title h2{font-size:4.2rem}
+  .screen-frame{padding:5px;border-radius:13px}
+  .screen-caption strong{font-size:13px}
+  .contact-links a{grid-template-columns:72px 1fr auto;gap:8px}
+  .contact-links strong{font-size:12px;overflow-wrap:anywhere}
+  .map-card{min-height:48vh}
+  .map-card iframe{height:48vh;min-height:320px}
+  .egg-banner{width:calc(100% - 16px);border-radius:18px}
+  .egg-banner button{font-size:8px;letter-spacing:.11em;min-height:44px}
+  .egg-banner span{font-size:6px;letter-spacing:.14em}
+}

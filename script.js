@@ -1059,21 +1059,32 @@ if (tunnelCanvas) {
 
   document.querySelectorAll('[data-tunnel-control]').forEach(btn => {
     const direction = btn.dataset.tunnelControl === 'slow' ? -7 : 7;
+    let pressed = false;
     const activate = () => setTarget(direction);
-    btn.addEventListener('click', activate);
-    btn.addEventListener('pointerdown', () => {
+    const start = (e) => {
+      if (e) e.preventDefault();
+      if (pressed) return;
+      pressed = true;
       activate();
       btn.__tunnelTimer = window.setInterval(activate, 140);
-    });
+    };
     const release = () => {
+      pressed = false;
       if (btn.__tunnelTimer) {
         window.clearInterval(btn.__tunnelTimer);
         btn.__tunnelTimer = null;
       }
     };
+    btn.addEventListener('pointerdown', start, {passive:false});
     btn.addEventListener('pointerup', release);
     btn.addEventListener('pointercancel', release);
     btn.addEventListener('pointerleave', release);
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') start(e);
+    });
+    btn.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') release();
+    });
   });
 
   function drawTunnel(now) {

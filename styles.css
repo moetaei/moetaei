@@ -1032,3 +1032,169 @@ overflow:hidden}
   .contact-scene{opacity:.82}
   .contact-ring-a{width:90vw;height:90vw}
 }
+
+
+/* Contact title cleanup */
+.contact-section .contact-card h2{
+  font-size:clamp(4.2rem,6.6vw,6.8rem);
+  line-height:.9;
+  letter-spacing:-.08em;
+  margin:28px 0 20px;
+  color:#fff;
+}
+@media(max-width:620px){
+  .contact-section .contact-card h2{
+    font-size:clamp(3.8rem,15vw,5rem);
+    margin:20px 0 15px;
+  }
+}
+
+
+/* FINAL CONTACT CLEANUP: remove utility/status clutter */
+.contact-meta,
+.contact-signal,
+.contact-footer,
+.map-topline,
+.map-cross,
+.map-pin,
+.map-coords,
+.map-bottom,
+.contact-node,
+.contact-crosshair{
+  display:none !important;
+}
+
+/* Let the contact card breathe now that the utility labels are gone. */
+.contact-section .contact-card h2{
+  margin-top:16px;
+}
+.map-frame{
+  min-height:560px;
+}
+@media(max-width:900px){
+  .map-frame{min-height:47vh}
+}
+@media(max-width:620px){
+  .map-frame{min-height:43vh}
+}
+
+
+/* GLOBAL CONTACT PASS: clean composition + subtle globe */
+.portfolio-section::after{display:none !important;}
+.portfolio-section .work-exhibit::before,
+.portfolio-section .work-exhibit::after{display:none !important;}
+
+.contact-section .contact-meta,
+.contact-section .contact-signal,
+.contact-section .contact-footer,
+.contact-section .map-topline,
+.contact-section .map-bottom,
+.contact-section .map-cross,
+.contact-section .map-pin,
+.contact-section .map-coords,
+.contact-section .map-status{
+  display:none !important;
+}
+.contact-scene{z-index:1}
+.contact-globe{
+  position:absolute;
+  left:67%;
+  top:50%;
+  width:min(58vw,760px);
+  height:min(58vw,760px);
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(255,220,112,.14);
+  border-radius:50%;
+  box-shadow:
+    0 0 45px rgba(255,214,98,.08),
+    0 0 120px rgba(255,37,215,.055),
+    inset 0 0 45px rgba(73,184,255,.035);
+  opacity:.82;
+  animation:globeFloat 18s ease-in-out infinite;
+}
+.contact-globe::before{
+  content:"";
+  position:absolute;
+  inset:8%;
+  border:1px solid rgba(74,190,255,.09);
+  border-radius:50%;
+  box-shadow:inset 0 0 40px rgba(74,190,255,.035);
+}
+.contact-globe::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 39% 35%,rgba(255,223,119,.10),transparent 8%),
+    radial-gradient(circle at 62% 61%,rgba(255,47,221,.06),transparent 18%),
+    radial-gradient(circle at 50% 48%,transparent 42%,rgba(0,0,0,.18) 100%);
+  pointer-events:none;
+}
+.globe-line{
+  position:absolute;
+  display:block;
+  border:1px solid rgba(255,255,255,.075);
+  pointer-events:none;
+}
+.globe-lat{
+  left:4%; right:4%;
+  border-radius:50%;
+}
+.globe-lat.lat-a{top:30%;height:22%}
+.globe-lat.lat-b{top:44%;height:12%}
+.globe-lat.lat-c{top:58%;height:22%}
+.globe-lon{
+  top:4%; bottom:4%;
+  width:30%;
+  left:35%;
+  border-radius:50%;
+}
+.globe-lon.lon-a{transform:rotate(22deg)}
+.globe-lon.lon-b{transform:rotate(-22deg)}
+.globe-lon.lon-c{transform:rotate(44deg);opacity:.55}
+.globe-lon.lon-d{transform:rotate(-44deg);opacity:.55}
+.globe-pulse{
+  position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:#ffe16f;
+  box-shadow:0 0 11px #ffe16f,0 0 30px rgba(255,62,221,.5),0 0 52px rgba(64,191,255,.25);
+  animation:globePulse 2.8s ease-in-out infinite;
+}
+@keyframes globeFloat{0%,100%{margin-top:0}50%{margin-top:-8px}}
+@keyframes globePulse{50%{transform:translate(-50%,-50%) scale(.72);opacity:.42}}
+.contact-section .contact-card,
+.contact-section .map-card{
+  background:linear-gradient(145deg,rgba(8,9,20,.78),rgba(3,4,10,.88));
+}
+.contact-section .map-card{min-height:560px}
+.contact-section .map-frame{min-height:560px}
+.contact-section .map-frame iframe{
+  filter:grayscale(.82) saturate(.55) contrast(1.08) brightness(.48);
+}
+.contact-section .map-vignette{
+  background:
+    radial-gradient(circle at 52% 48%,transparent 8%,rgba(0,0,0,.08) 48%,rgba(0,0,0,.58) 100%),
+    linear-gradient(180deg,rgba(3,4,10,.14),transparent 25%,transparent 78%,rgba(3,4,10,.54));
+}
+@media(max-width:900px){
+  .contact-globe{
+    width:88vw;height:88vw;left:72%;top:58%;opacity:.48;
+  }
+  .contact-section .map-card,
+  .contact-section .map-frame{min-height:47vh}
+}
+@media(max-width:620px){
+  .contact-globe{
+    width:108vw;height:108vw;left:76%;top:62%;opacity:.34;
+  }
+  .contact-section .map-card,
+  .contact-section .map-frame{min-height:43vh}
+}
+
+/* Ensure no legacy utility strips can render at the bottom. */
+.contact-section .contact-footer,
+.contact-section .map-bottom,
+.contact-section .map-status,
+.contact-section .contact-meta,
+.contact-section .contact-signal{display:none !important;}

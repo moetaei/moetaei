@@ -1125,6 +1125,103 @@ function drawSynthCity() {
     slowFrame();
   }
 
+
+  // Contact page: atmospheric communication/control-room scene.
+  const contactParticles = Array.from({length: 75}, () => ({
+    x: Math.random(), y: Math.random(), r: .5 + Math.random()*1.5,
+    phase: Math.random()*Math.PI*2, speed: .0001 + Math.random()*.00022,
+    tone: Math.random()
+  }));
+
+  function drawContactGallery(){
+    const t=frame*.00155;
+    const cx=width*.52, cy=height*.48;
+
+    const bg=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(width,height)*.82);
+    bg.addColorStop(0,'#100d1d');
+    bg.addColorStop(.45,'#05060f');
+    bg.addColorStop(1,'#010207');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,width,height);
+
+    // Soft magenta / blue / gold light pools.
+    let g=ctx.createRadialGradient(width*.16,height*.34,0,width*.16,height*.34,width*.48);
+    g.addColorStop(0,'rgba(255,40,219,.18)');
+    g.addColorStop(.45,'rgba(159,56,255,.07)');
+    g.addColorStop(1,'rgba(255,40,219,0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,width,height);
+
+    g=ctx.createRadialGradient(width*.86,height*.28,0,width*.86,height*.28,width*.42);
+    g.addColorStop(0,'rgba(73,184,255,.12)');
+    g.addColorStop(.42,'rgba(69,91,255,.05)');
+    g.addColorStop(1,'rgba(73,184,255,0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,width,height);
+
+    g=ctx.createRadialGradient(cx,cy,0,cx,cy,width*.42);
+    g.addColorStop(0,'rgba(255,220,113,.07)');
+    g.addColorStop(1,'rgba(255,220,113,0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,width,height);
+
+    // Thin coordinate grid, fading toward center.
+    ctx.save();
+    ctx.globalAlpha=.24;
+    for(let x=0;x<=width;x+=92){
+      ctx.strokeStyle='rgba(95,121,255,.07)';
+      ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,height);ctx.stroke();
+    }
+    for(let y=0;y<=height;y+=74){
+      ctx.strokeStyle='rgba(255,255,255,.045)';
+      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y);ctx.stroke();
+    }
+    ctx.restore();
+
+    // Long communication arcs.
+    for(let i=0;i<4;i++){
+      ctx.save();
+      ctx.translate(width*.50,height*.49);
+      ctx.rotate((-0.34+i*.18)+Math.sin(t*.14+i)*.012);
+      ctx.strokeStyle=i===0?'rgba(255,222,115,.17)':i%2?'rgba(255,49,220,.12)':'rgba(78,191,255,.11)';
+      ctx.lineWidth=i===0?1.5:1;
+      ctx.setLineDash(i===0?[4,12]:[2,18]);
+      ctx.beginPath();
+      ctx.ellipse(0,0,width*(.20+i*.075),height*(.17+i*.065),0,Math.PI*.03,Math.PI*1.97);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Central signal pulse.
+    const pulse=22+Math.sin(t*2.5)*4;
+    ctx.save();
+    ctx.strokeStyle='rgba(255,224,119,.22)';
+    ctx.lineWidth=1;
+    ctx.shadowColor='rgba(255,221,110,.25)';
+    ctx.shadowBlur=20;
+    ctx.beginPath();ctx.arc(cx,cy,pulse,0,Math.PI*2);ctx.stroke();
+    ctx.restore();
+
+    // Moving scan line.
+    const sx=((Math.sin(t*.25)*.5)+.5)*width;
+    const scan=ctx.createLinearGradient(sx-140,0,sx+140,0);
+    scan.addColorStop(0,'rgba(255,255,255,0)');
+    scan.addColorStop(.5,'rgba(255,222,120,.05)');
+    scan.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=scan;ctx.fillRect(sx-140,0,280,height);
+
+    // Ambient motes.
+    contactParticles.forEach(p=>{
+      p.y-=p.speed;
+      if(p.y<-.03){p.y=1.03;p.x=Math.random();}
+      const x=(p.x+Math.sin(t*.65+p.phase)*.0035)*width;
+      const y=p.y*height;
+      const a=.06+.20*(1-p.y);
+      const c=p.tone<.33?`rgba(255,225,122,${a})`:p.tone<.66?`rgba(255,58,221,${a*.72})`:`rgba(76,193,255,${a*.52})`;
+      ctx.fillStyle=c;ctx.shadowColor=c;ctx.shadowBlur=8;
+      ctx.beginPath();ctx.arc(x,y,p.r,0,Math.PI*2);ctx.fill();
+      ctx.shadowBlur=0;
+    });
+
+    slowFrame();
+  }
+
   // main animation loop
   function animate(){
     ctx.clearRect(0,0,width,height);
@@ -1136,6 +1233,7 @@ function drawSynthCity() {
       case 'storybookSky': drawFastAurora(); break;
       case 'synthCity': drawSynthCity(); break;
       case 'floatingPolys': drawFloatingPolys(); break;
+      case 'contactGallery': drawContactGallery(); break;
       case 'workGallery': drawWorkGallery(); break;
       default:
         // fallback

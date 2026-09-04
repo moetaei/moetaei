@@ -108,22 +108,66 @@
     </section>
 
     <section class="section contact-section" id="contact">
-      <canvas class="bgCanvas" data-bgtype="floatingPolys"></canvas>
-      <div class="content-wrap contact-grid">
+      <canvas class="bgCanvas contact-gallery-canvas" data-bgtype="contactGallery" aria-hidden="true"></canvas>
+
+      <div class="contact-scene" aria-hidden="true">
+        <div class="contact-ring contact-ring-a"></div>
+        <div class="contact-ring contact-ring-b"></div>
+        <div class="contact-ring contact-ring-c"></div>
+        <div class="contact-beam contact-beam-a"></div>
+        <div class="contact-beam contact-beam-b"></div>
+        <div class="contact-node node-a"><i></i></div>
+        <div class="contact-node node-b"><i></i></div>
+        <div class="contact-node node-c"><i></i></div>
+        <div class="contact-crosshair"></div>
+      </div>
+
+      <div class="content-wrap contact-grid contact-grid-v2">
         <div class="contact-card glass-card reveal">
+          <div class="contact-meta"><span>05 / CONTACT</span><span>SC / 33.62°N 117.18°W</span></div>
+          <div class="contact-signal"><i></i><span>CHANNEL OPEN</span></div>
           <div class="contact-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
-          <h2>Contact</h2>
-          <p class="contact-lede">Southern California · systems, production technology</p>
+          <h2>Let's<br><em>build</em><br>something.</h2>
+          <p class="contact-lede">Systems, production technology, interactive work, and the infrastructure behind creative teams.</p>
+
           <div class="contact-links">
-            <a href="mailto:mtaei@icloud.com"><span>EMAIL</span><strong>mtaei@icloud.com</strong>↗</a>
-            <a href="tel:+19495477659"><span>PHONE</span><strong>+1 (949) 547-7659</strong>↗</a>
-            <a href="https://www.linkedin.com/in/mtaei" target="_blank" rel="noopener"><span>LINKEDIN</span><strong>linkedin.com/in/mtaei</strong>↗</a>
+            <a href="mailto:mtaei@icloud.com">
+              <span>EMAIL</span><strong>mtaei@icloud.com</strong><b>↗</b>
+            </a>
+            <a href="tel:+19495477659">
+              <span>PHONE</span><strong>+1 (949) 547-7659</strong><b>↗</b>
+            </a>
+            <a href="https://www.linkedin.com/in/mtaei" target="_blank" rel="noopener">
+              <span>LINKEDIN</span><strong>linkedin.com/in/mtaei</strong><b>↗</b>
+            </a>
+          </div>
+
+          <div class="contact-footer">
+            <span>GOOD SIGNALS ONLY</span>
+            <span>AVAILABLE FOR INTERESTING WORK</span>
           </div>
         </div>
+
         <div class="map-card glass-card reveal">
-          <div class="card-header"><strong>SOUTHERN CALIFORNIA</strong><span>BASE</span></div>
-          <iframe title="Map of Los Angeles" src="https://maps.google.com/maps?q=Los%20Angeles&t=&z=10&ie=UTF8&iwloc=&output=embed"></iframe>
-          <div class="map-note"><span></span> OPEN TO INTERESTING WORK</div>
+          <div class="map-topline">
+            <div>
+              <span class="map-kicker">OPERATING REGION</span>
+              <strong>SOUTHERN CALIFORNIA</strong>
+            </div>
+            <div class="map-status"><i></i> ONLINE</div>
+          </div>
+          <div class="map-frame">
+            <iframe title="Map of Southern California" src="https://maps.google.com/maps?q=San%20Clemente%2C%20CA&t=&z=9&ie=UTF8&iwloc=&output=embed"></iframe>
+            <div class="map-vignette"></div>
+            <div class="map-cross map-cross-a"></div>
+            <div class="map-cross map-cross-b"></div>
+            <div class="map-pin"><i></i><span>SOUTHERN CALIFORNIA</span></div>
+            <div class="map-coords">33.62° N<br>117.18° W</div>
+          </div>
+          <div class="map-bottom">
+            <span>IRVINE · LOS ANGELES · OC</span>
+            <span>REMOTE / ONSITE</span>
+          </div>
         </div>
       </div>
     </section>

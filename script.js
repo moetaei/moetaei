@@ -990,6 +990,141 @@ function drawSynthCity() {
     slowFrame();
   }
 
+
+  // Luminous Work gallery background: architectural depth, neon arcs,
+  // perspective floor, floating motes, and a slow scanning beam.
+  const workParticles = Array.from({length: 100}, () => ({
+    x: Math.random(), y: Math.random(), r: .6 + Math.random()*1.8,
+    speed: .00015 + Math.random()*.00034,
+    phase: Math.random()*Math.PI*2, tone: Math.random()
+  }));
+
+  function workGlowDot(x,y,r,color,blur){
+    ctx.save();
+    ctx.fillStyle=color; ctx.shadowColor=color; ctx.shadowBlur=blur;
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawWorkGallery(){
+    const t=frame*.002;
+    const cx=width*.5, horizon=height*.61;
+
+    const base=ctx.createRadialGradient(cx,horizon*.58,0,cx,horizon*.65,Math.max(width,height)*.9);
+    base.addColorStop(0,'#130a1f'); base.addColorStop(.42,'#070612'); base.addColorStop(1,'#010207');
+    ctx.fillStyle=base; ctx.fillRect(0,0,width,height);
+
+    // Large atmospheric glows.
+    let g=ctx.createRadialGradient(width*.18,height*.34,0,width*.18,height*.34,width*.48);
+    g.addColorStop(0,'rgba(255,35,224,.24)'); g.addColorStop(.36,'rgba(168,48,255,.10)'); g.addColorStop(1,'rgba(255,35,224,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,width,height);
+
+    g=ctx.createRadialGradient(width*.84,height*.27,0,width*.84,height*.27,width*.43);
+    g.addColorStop(0,'rgba(62,192,255,.15)'); g.addColorStop(.4,'rgba(83,93,255,.06)'); g.addColorStop(1,'rgba(62,192,255,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,width,height);
+
+    g=ctx.createRadialGradient(cx,horizon,0,cx,horizon,width*.43);
+    g.addColorStop(0,'rgba(255,222,118,.20)'); g.addColorStop(.28,'rgba(255,169,67,.06)'); g.addColorStop(1,'rgba(255,169,67,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,width,height);
+
+    // Architectural ribs / light columns.
+    for(let i=0;i<11;i++){
+      const p=i/10, edge=Math.abs(p-.5)*2;
+      const x=p*width;
+      const top=height*(.18+edge*.11);
+      const rib=ctx.createLinearGradient(0,top,0,horizon);
+      rib.addColorStop(0,'rgba(115,90,255,0)');
+      rib.addColorStop(.38,'rgba(117,91,255,.07)');
+      rib.addColorStop(.82,'rgba(255,58,220,.09)');
+      rib.addColorStop(1,'rgba(255,220,112,.02)');
+      ctx.fillStyle=rib; ctx.fillRect(x-1.1,top,2.2,horizon-top);
+    }
+
+    // Neon circular portal / installation halo.
+    const py=height*.43;
+    for(let i=0;i<5;i++){
+      ctx.save();
+      ctx.translate(cx,py);
+      ctx.rotate((t*.025)*(i%2? -1:1));
+      const rx=width*(.17+i*.034), ry=height*(.15+i*.028);
+      ctx.strokeStyle=i===0?'rgba(255,221,116,.40)':i===1?'rgba(255,45,222,.25)':i===2?'rgba(73,196,255,.18)':'rgba(163,96,255,.10)';
+      ctx.lineWidth=i===0?1.6:1;
+      ctx.shadowColor= i===0?'rgba(255,220,115,.45)':'rgba(255,50,220,.18)';
+      ctx.shadowBlur=18+i*5;
+      ctx.beginPath(); ctx.ellipse(0,0,rx,ry,0,Math.PI,Math.PI*2); ctx.stroke();
+      ctx.restore();
+    }
+
+    // Vertical luminous columns on the sides.
+    const sideXs=[width*.08,width*.15,width*.85,width*.92];
+    sideXs.forEach((x,i)=>{
+      const w=Math.max(3,width*.002);
+      const grad=ctx.createLinearGradient(0,height*.15,0,height*.8);
+      grad.addColorStop(0,'rgba(255,255,255,0)');
+      grad.addColorStop(.35,i%2?'rgba(255,51,220,.05)':'rgba(77,188,255,.07)');
+      grad.addColorStop(.72,'rgba(255,220,110,.12)');
+      grad.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=grad; ctx.fillRect(x-w,height*.16,w*2,height*.64);
+      ctx.strokeStyle=i%2?'rgba(255,72,224,.13)':'rgba(87,188,255,.12)';
+      ctx.beginPath(); ctx.moveTo(x,height*.18); ctx.lineTo(x,horizon); ctx.stroke();
+    });
+
+    // Perspective stage/floor.
+    ctx.save();
+    for(let i=0;i<15;i++){
+      const u=i/14;
+      const y=horizon + Math.pow(u,1.7)*(height-horizon)*1.08;
+      ctx.strokeStyle=i%4===0?'rgba(255,224,113,.15)':'rgba(106,117,255,.07)';
+      ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(width,y); ctx.stroke();
+    }
+    for(let i=-14;i<=14;i++){
+      const p=i/14;
+      ctx.strokeStyle=Math.abs(i)%5===0?'rgba(255,224,113,.14)':'rgba(104,117,255,.075)';
+      ctx.beginPath();
+      ctx.moveTo(cx+p*width*.015,horizon);
+      ctx.lineTo(cx+p*width*.94,height);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Crossing beam lines.
+    const sweep=Math.sin(t*.26)*.5+.5;
+    const scanX=sweep*width;
+    const beam=ctx.createLinearGradient(scanX-160,0,scanX+160,0);
+    beam.addColorStop(0,'rgba(255,255,255,0)');
+    beam.addColorStop(.5,'rgba(255,224,128,.075)');
+    beam.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=beam; ctx.fillRect(scanX-160,0,320,height);
+
+    // Floating dust / pixels.
+    workParticles.forEach(p=>{
+      p.y-=p.speed;
+      if(p.y<-.03){p.y=1.03;p.x=Math.random();}
+      const x=(p.x + Math.sin(t*.8+p.phase)*.004)*width;
+      const y=p.y*height;
+      const a=.08 + (1-p.y)*.16;
+      const color=p.tone<.34?`rgba(255,224,123,${a})`:p.tone<.67?`rgba(255,57,224,${a*.75})`:`rgba(78,190,255,${a*.58})`;
+      workGlowDot(x,y,p.r,color,8);
+    });
+
+    // Little runway lights leading into the gallery.
+    [-1,1].forEach(side=>{
+      for(let i=0;i<9;i++){
+        const u=i/8, y=horizon+Math.pow(u,1.55)*(height-horizon)*.92;
+        const x=cx+side*width*(.10+u*.36);
+        workGlowDot(x,y,1.2+u*1.4,side<0?'rgba(255,224,118,.62)':'rgba(103,195,255,.48)',9+u*7);
+      }
+    });
+
+    // Subtle top light bloom.
+    const top=ctx.createRadialGradient(cx,height*.08,0,cx,height*.08,width*.32);
+    top.addColorStop(0,'rgba(255,255,255,.045)'); top.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=top; ctx.fillRect(0,0,width,height);
+
+    slowFrame();
+  }
+
   // main animation loop
   function animate(){
     ctx.clearRect(0,0,width,height);
@@ -1001,6 +1136,7 @@ function drawSynthCity() {
       case 'storybookSky': drawFastAurora(); break;
       case 'synthCity': drawSynthCity(); break;
       case 'floatingPolys': drawFloatingPolys(); break;
+      case 'workGallery': drawWorkGallery(); break;
       default:
         // fallback
         ctx.fillStyle='#000';

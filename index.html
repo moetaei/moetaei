@@ -1,286 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="NK Deal Food Distribution - Mediterranean specialty foods serving customers across North America.">
-  <title>NK Deal | Mediterranean Specialty Foods</title>
-  <link rel="icon" href="img/logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#03040b">
+  <meta name="description" content="Mo Taei's portfolio. Systems administration, creative technology, and production infrastructure.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Mo Taei | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=8">
-  <style>
-
-
-    .site-header .brand img {
-      width: 62px;
-    }
-    @media (max-width: 900px) {
-      .site-header .brand img {
-        width: 54px;
-      }
-    }
-    .catalog-frame {
-      width: 100%;
-      padding: 0;
-      overflow: hidden;
-    }
-    .catalog-frame iframe {
-      display: block;
-      width: 100%;
-      height: min(58.666667vh, 1000px);
-      min-height: 700px;
-      margin: 0;
-      border: 0;
-    }
-    @media (max-width: 1350px) {
-      .catalog-frame iframe {
-        height: 52vh;
-        min-height: 600px;
-      }
-    }
-    @media (max-width: 900px) {
-      .catalog-frame iframe {
-        height: 48vh;
-        min-height: 500px;
-      }
-    }
-
-    .category-image {
-      width: calc(100% + 56px);
-      height: 190px;
-      margin: -28px -28px 0;
-      overflow: hidden;
-      background: #f5f3ee;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .category-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0) 68%,
-        rgba(13,61,53,.055) 100%
-      );
-      pointer-events: none;
-    }
-    .category-image img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform .45s ease;
-    }
-    .category-card:hover .category-image img {
-      transform: scale(1.025);
-    }
-
-    @media (max-width: 1350px) {
-      .category-image {
-        height: 180px;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .category-image {
-        height: 200px;
-      }
-    }
-    .categories .category-card {
-      color: #14211d !important;
-    }
-    .categories .category-card h3 {
-      color: #0d3d35 !important;
-      opacity: 1 !important;
-    }
-    .categories .category-card p {
-      color: #53615b !important;
-      opacity: 1 !important;
-    }
-    .categories .category-card .category-number {
-      color: #7b8782 !important;
-    }
-    .categories .category-card .category-icon {
-      color: #d69a2d !important;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="NK Deal home">
-        <img src="img/logo.png" alt="NK Deal">
-      </a>
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#catalog">Catalog</a>
-        <a href="#about">About</a>
-        <a href="#categories">What We Carry</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="nav-cta" href="#contact">Get in Touch</a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">☰</button>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="nav-brand" href="#intro" aria-label="Mo Taei home">MT</a>
+    <div class="nav-pages">
+      <a class="active" href="#intro"><span>01</span>Intro</a>
+      <a href="#about"><span>02</span>About</a>
+      <a href="#skills"><span>03</span>Skills</a>
+      <a href="#portfolio"><span>04</span>Work</a>
+      <a href="#contact"><span>05</span>Contact</a>
     </div>
-    <div class="mobile-nav" id="mobileNav">
-      <a href="#catalog">Catalog</a>
-      <a href="#about">About</a>
-      <a href="#categories">What We Carry</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </header>
+  </nav>
 
-  <main id="top">
-    <!-- Catalog is the first main section so visitors land on the product catalog immediately. -->
-    <section class="catalog-section catalog-front" id="catalog">
-      <div class="container">
-        <div class="catalog-intro">
-          <h1>Mediterranean<br><span style="color: var(--gold);">Specialty Foods</span></h1>
-          <a class="button button-light" href="https://drive.google.com/file/d/1HvqymG_cubBVvsB7EMzcMhm5SAWxmM1-/view?usp=sharing" target="_blank" rel="noopener noreferrer">Open Catalog ↗</a>
+  <main class="container">
+    <section class="section hero-section" id="intro">
+      <canvas class="bgCanvas" data-bgtype="retrowaveIntro"></canvas>
+      <div class="hero-card glass-card">
+        <h1>Mo Taei's<br><em>Portfolio</em></h1>
+        <div class="hero-links">
+          <a class="btn btn-primary" href="#about">Enter portfolio <span>↓</span></a>
         </div>
-        <div class="catalog-frame">
-          <iframe src="https://drive.google.com/file/d/1HvqymG_cubBVvsB7EMzcMhm5SAWxmM1-/preview" title="NK Deal product catalog" allow="autoplay"></iframe>
-        </div>
-        <p class="catalog-note">For product availability, quantities and pricing, contact NK Deal directly.</p>
+        <div class="hero-footer"><span>Southern California</span><span>Systems Administration + Production Technology</span><span>10+ years</span><a class="linkedin-mini" href="https://www.linkedin.com/in/mtaei" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 8.2H3.1V20h3.1V8.2ZM4.65 3.1a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8ZM20.9 13.1c0-3.55-1.9-5.2-4.45-5.2-2.05 0-2.95 1.13-3.46 1.92V8.2H9.9V20H13v-6.04c0-1.59.3-3.13 2.27-3.13 1.94 0 1.97 1.82 1.97 3.25V20h3.1l.01-6.9Z"/></svg><span>LinkedIn</span></a></div>
       </div>
+      <div class="page-cue"><span></span>SCROLL TO NEXT PAGE</div>
     </section>
 
-    <section class="intro" id="about">
-      <div class="container intro-grid">
-        <div>
-          <div class="eyebrow dark"><span></span> About NK Deal</div>
-          <h2>A premier distributor of <em>Mediterranean goods.</em></h2>
+    <section class="section about-section" id="about">
+      <canvas class="bgCanvas" data-bgtype="quarterNeonWaves"></canvas>
+      <div class="content-wrap about-grid">
+        <div class="about-card glass-card reveal">
+          <h2>About</h2>
+          <p>Technology operations professional with nearly a decade of IT and technical support experience, including 5 years supporting production at DreamWorks Animation and current experience in the game industry with Take-Two Interactive (2K Games &amp; Zynga).</p>
+          <p>
+          My work has supported production across major DreamWorks Animation features,
+          including <strong>The Bad Guys</strong>, <strong>Puss in Boots: The Last Wish</strong>,
+          <strong>Ruby Gillman: Teenage Kraken</strong>, <strong>Trolls Band Together</strong>,
+          <strong>Orion and the Dark</strong>, <strong>Kung Fu Panda 4</strong>,
+          <strong>The Wild Robot</strong>, and <strong>The Bad Guys 2</strong>.
+          I also contributed to an internal early storyboard preview and review for
+          <strong>Shrek 5</strong>.
+          </p>
+          <p></p>
         </div>
-        <div class="intro-copy">
-          <p>NK Deal Food Distribution brings together a wide range of Persian, Lebanese and Mediterranean foods from established brands and specialty producers.</p>
-          <p>From pantry staples and cooking essentials to sweets, snacks, beverages and specialty ingredients, our catalog reflects the breadth of what we carry.</p>
-          <a class="text-link" href="#catalog">Browse the full catalog <span>→</span></a>
+        <div class="resume-card glass-card reveal">
+          <div class="card-header"><strong>RESUME</strong></div>
+          <iframe title="Resume preview" src="https://drive.google.com/file/d/1kXZ4fRPHzwVYPoiwU6MdOH0JkMkgQlUK/preview"></iframe>
         </div>
       </div>
+      <div class="page-cue"><span></span>SKILLS</div>
     </section>
 
-    <section class="categories" id="categories">
-      <div class="container">
-        <div class="section-head">
+    <section class="section skills-section" id="skills">
+      <canvas class="bgCanvas" data-bgtype="storybookSky"></canvas>
+      <div class="content-wrap">
+        <div class="skills-top reveal">
           <div>
-            <div class="eyebrow dark"><span></span> Our Selection</div>
-            <h2>What you'll find in our <em>catalog.</em></h2>
+            <h2>Skills</h2>
           </div>
-          <p>We carry a wide mix of established brands and specialty products, with formats ranging from everyday packages to larger quantities.</p>
         </div>
-        <div class="category-grid">
-          <article class="category-card featured">
-            <span class="category-number">01</span>
-            <div class="category-image"><img src="img/categories/persian.jpg" alt="Persian and Mediterranean specialty foods"></div>
-            <h3>Persian & Mediterranean</h3>
-            <p>Traditional sweets, lavashak, saffron, specialty pantry foods, pickles and more.</p>
+        <div class="skills-grid reveal">
+          <article class="skill-card"><div class="skill-icon">⌘</div><div><h3>Systems</h3><p>Linux · Windows · macOS · Group Policy · Patch Management · JAMF · SCCM</p></div></article>
+          <article class="skill-card"><div class="skill-icon">&lt;/&gt;</div><div><h3>Automation</h3><p>Python · PowerShell · Bash · C++ · Scripting · Workflow optimization</p></div></article>
+          <article class="skill-card"><div class="skill-icon cloud-mark">☁</div><div><h3>Cloud</h3><p>AWS · Azure · Cloud administration · Identity · Migrations</p></div></article>
+          <article class="skill-card"><div class="skill-icon">✦</div><div><h3>Creative Tech</h3><p>Unreal Engine · Maya · Houdini · Photoshop · Premiere Pro</p></div></article>
+          <article class="skill-card"><div class="skill-icon">◫</div><div><h3>Web</h3><p>HTML · CSS · JavaScript · Responsive UI · Interactive experiences</p></div></article>
+          <article class="skill-card"><div class="skill-icon">▣</div><div><h3>Production</h3><p>Confluence · Jira · Video pipelines · Studio support · Incident response</p></div></article>
+        </div>
+      </div>
+      <div class="page-cue"><span></span>WORK</div>
+    </section>
+
+    <section class="section portfolio-section" id="portfolio">
+      <canvas class="bgCanvas work-gallery-canvas" data-bgtype="workGallery" aria-hidden="true"></canvas>
+      <div class="work-exhibit">
+        <div class="work-title reveal"><h2>Work</h2></div>
+        <div class="screening-room reveal">
+          <article class="screen-card">
+            <div class="screen-frame">
+              <div class="screen-media"><iframe title="Unreal project" src="https://www.youtube.com/embed/5TjLQM7S_hY" allowfullscreen></iframe></div>
+            </div>
           </article>
-          <article class="category-card">
-            <span class="category-number">02</span>
-            <div class="category-image"><img src="img/categories/rice.jpg" alt="Basmati rice and grains"></div>
-            <h3>Rice & Grains</h3>
-            <p>Persian rice, basmati, bulgur, freekeh, lentils and other pantry staples.</p>
+          <article class="screen-card">
+            <div class="screen-frame">
+              <div class="screen-media"><iframe title="Unreal project" src="https://www.youtube.com/embed/Mz3if2iNJPg" allowfullscreen></iframe></div>
+            </div>
           </article>
-          <article class="category-card">
-            <span class="category-number">03</span>
-            <div class="category-image"><img src="img/categories/dates.jpg" alt="Dates and dried fruit"></div>
-            <h3>Dates & Dried Fruit</h3>
-            <p>Dates, date products, raisins, barberries, figs and specialty fruit products.</p>
+          <article class="screen-card">
+            <div class="screen-frame">
+              <div class="screen-media"><iframe title="Unreal project" src="https://www.youtube.com/embed/zhL6NqpCXuE" allowfullscreen></iframe></div>
+            </div>
           </article>
-          <article class="category-card">
-            <span class="category-number">04</span>
-            <div class="category-image"><img src="img/categories/nuts.jpg" alt="Pistachios and almonds"></div>
-            <h3>Nuts & Seeds</h3>
-            <p>Pistachios, almonds, sesame, seeds and bulk specialty nut products.</p>
-          </article>
-          <article class="category-card">
-            <span class="category-number">05</span>
-            <div class="category-image"><img src="img/categories/oils.jpg" alt="Tahini and Mediterranean condiments"></div>
-            <h3>Oils & Condiments</h3>
-            <p>Olive oils, cooking oils, tahini, molasses, vinegars and sauces.</p>
-          </article>
-          <article class="category-card">
-            <span class="category-number">06</span>
-            <div class="category-image"><img src="img/categories/sweets.jpg" alt="Persian sweets"></div>
-            <h3>Sweets & Beverages</h3>
-            <p>Sohan, rock candy, teas, juices, fruit drinks, specialty waters and snacks.</p>
-          </article>
+        </div>
+      </div>
+      <div class="page-cue"><span></span>CONTACT</div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <canvas class="bgCanvas contact-gallery-canvas" data-bgtype="contactGallery" aria-hidden="true"></canvas>
+
+      <div class="contact-scene" aria-hidden="true">
+        <div class="contact-globe">
+          <span class="globe-line globe-lat lat-a"></span>
+          <span class="globe-line globe-lat lat-b"></span>
+          <span class="globe-line globe-lat lat-c"></span>
+          <span class="globe-line globe-lon lon-a"></span>
+          <span class="globe-line globe-lon lon-b"></span>
+          <span class="globe-line globe-lon lon-c"></span>
+          <span class="globe-line globe-lon lon-d"></span>
+          <i class="globe-pulse"></i>
+        </div>
+        <div class="contact-ring contact-ring-a"></div>
+        <div class="contact-ring contact-ring-b"></div>
+        <div class="contact-ring contact-ring-c"></div>
+        <div class="contact-beam contact-beam-a"></div>
+        <div class="contact-beam contact-beam-b"></div>
+      </div>
+
+      <div class="content-wrap contact-grid contact-grid-v2">
+        <div class="contact-card glass-card reveal">
+          <div class="contact-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2>Contact</h2>
+          <p class="contact-lede">Systems, production technology, interactive work, and the infrastructure behind creative teams.</p>
+
+          <div class="contact-links">
+            <a href="mailto:mtaei@icloud.com">
+              <span>EMAIL</span><strong>mtaei@icloud.com</strong><b>↗</b>
+            </a>
+            <a href="tel:+19495477659">
+              <span>PHONE</span><strong>+1 (949) 547-7659</strong><b>↗</b>
+            </a>
+            <a href="https://www.linkedin.com/in/mtaei" target="_blank" rel="noopener">
+              <span>LINKEDIN</span><strong>linkedin.com/in/mtaei</strong><b>↗</b>
+            </a>
+          </div>
+        </div>
+
+        <div class="map-card glass-card reveal">
+          <div class="map-frame">
+            <iframe title="Map of Southern California" src="https://maps.google.com/maps?q=San%20Clemente%2C%20CA&t=&z=9&ie=UTF8&iwloc=&output=embed"></iframe>
+            <div class="map-vignette"></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="cta-section">
-      <div class="container cta-box">
-        <div>
-          <div class="eyebrow"><span></span> New Customers</div>
-          <h2>Looking for the right <em>products?</em></h2>
-          <p>Tell us what you're looking for and our team can help you get started.</p>
-        </div>
-        <a class="button button-primary" href="#contact">Contact NK Deal <span>→</span></a>
-      </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-      <div class="container contact-grid">
-        <div>
-          <div class="eyebrow dark"><span></span> Get in Touch</div>
-          <h2>Let's <em>connect.</em></h2>
-          <p class="contact-intro">NK Deal works with food businesses and specialty markets across North America. For product questions, pricing and new customer inquiries, reach out directly.</p>
-        </div>
-        <div class="contact-cards">
-          <a href="tel:+17145539978" class="contact-card">
-            <span class="contact-label">Call</span>
-            <strong>(714) 553-9978</strong>
-            <small>General inquiries</small>
-          </a>
-          <a href="mailto:info@nkdeal.com" class="contact-card">
-            <span class="contact-label">Email</span>
-            <strong>info@nkdeal.com</strong>
-            <small>Send us your inquiry</small>
-          </a>
-        </div>
+    <section class="section easter-section" id="easteregg" aria-label="Easter egg">
+      <canvas id="tunnelCanvas"></canvas>
+      <div class="egg-banner" role="group" aria-label="Tunnel speed controls">
+        <button type="button" data-tunnel-control="slow" aria-label="Make the tunnel slower">← SLOWER</button>
+        <span aria-hidden="true">SPEED</span>
+        <button type="button" data-tunnel-control="fast" aria-label="Make the tunnel faster">FASTER →</button>
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <a class="brand footer-brand" href="#top"><img src="img/logo.png" alt="NK Deal"></a>
-      <div class="footer-copy">© 2026 NK Deal Food Distribution. Serving customers across North America.</div>
-      <a href="#top" class="back-top">Back to top ↑</a>
-    </div>
-  </footer>
-
-  <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileNav = document.querySelector('#mobileNav');
-    menuToggle?.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.textContent = open ? '×' : '☰';
-    });
-    mobileNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.textContent = '☰';
-    }));
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
-<style>
-  .categories .category-card {
-    padding: 28px 30px 30px;
-  }
-  .categories .category-card h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  .categories .category-card p {
-    margin-bottom: 0;
-  }
-</style>
